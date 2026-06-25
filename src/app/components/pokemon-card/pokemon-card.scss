@@ -1,0 +1,54 @@
+@use '../../../styles' as *;
+
+.pokemon-card {
+  background: $color-white;
+  border-radius: $border-radius;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: $shadow;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-hover;
+  }
+
+  &__sprite {
+    width: 96px;
+    height: 96px;
+    image-rendering: pixelated;
+  }
+
+  &__name {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    margin: 0.5rem 0;
+    color: $color-text;
+  }
+
+  &__types {
+    display: flex;
+    gap: 0.4rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  &__type {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    color: white;
+
+    @each $type, $color in $type-colors {
+      &--#{$type} {
+        background-color: $color;
+      }
+    }
+  }
+}
