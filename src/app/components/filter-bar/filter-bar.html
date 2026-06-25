@@ -1,0 +1,19 @@
+<div class="filter-bar">
+  <button
+    class="filter-bar__btn"
+    [class.filter-bar__btn--active]="activeFilter === null"
+    (click)="setFilter(null)"
+  >
+    All
+  </button>
+
+  @for (type of types; track type) {
+    <button
+      class="filter-bar__btn filter-bar__btn--{{ type }}"
+      [class.filter-bar__btn--active]="activeFilter === type"
+      (click)="setFilter(type)"
+    >
+      {{ type }}
+    </button>
+  }
+</div>

@@ -1,0 +1,11 @@
+<div class="pokemon-card" (click)="navigateToDetail()">
+  <img class="pokemon-card__sprite" [src]="pokemon.sprite" [alt]="pokemon.name" />
+  <h3 class="pokemon-card__name">{{ pokemon.name }}</h3>
+  <div class="pokemon-card__types">
+    @for (type of pokemon.types; track type) {
+      <span class="pokemon-card__type pokemon-card__type--{{ type }}">
+        {{ type }}
+      </span>
+    }
+  </div>
+</div>

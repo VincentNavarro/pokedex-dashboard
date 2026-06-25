@@ -5,11 +5,14 @@ import { AsyncPipe } from '@angular/common';
 import { Pokemon, AppState } from '../../models/pokemon.model';
 import { loadPokemon } from '../../store/pokemon.actions';
 import { selectFilteredPokemon, selectLoading, selectError } from '../../store/pokemon.selectors';
+import { PokemonCardComponent } from '../../components/pokemon-card/pokemon-card';
+import { SearchBarComponent } from '../../components/search-bar/search-bar';
+import { FilterBarComponent } from '../../components/filter-bar/filter-bar';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, PokemonCardComponent, SearchBarComponent, FilterBarComponent],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })
