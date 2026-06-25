@@ -1,8 +1,42 @@
 <div class="detail">
+  @if (loading$ | async) {
+    <div class="detail__loading">Loading...</div>
+  }
+
   @if (pokemon$ | async; as pokemon) {
-    <h1 class="detail__name">{{ pokemon.name }}</h1>
-    <img [src]="pokemon.sprite" [alt]="pokemon.name" />
-    <p>Height: {{ pokemon.height }}</p>
-    <p>Weight: {{ pokemon.weight }}</p>
+    <div class="detail__container">
+      <button class="detail__back" (click)="goBack()">← Back to Pokédex</button>
+
+      <div class="detail__header">
+        <img class="detail__sprite" [src]="pokemon.sprite" [alt]="pokemon.name" />
+        <div class="detail__info">
+          <h1 class="detail__name">{{ pokemon.name }}</h1>
+          <div class="detail__types">
+            @for (type of pokemon.types; track type) {
+              <span class="detail__type detail__type--{{ type }}">
+                {{ type }}
+              </span>
+            }
+          </div>
+          <div class="detail__measurements">
+            <span>Height: {{ pokemon.height / 10 }}m</span>
+            <span>Weight: {{ pokemon.weight / 10 }}kg</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail__stats">
+        <h2 class="detail__stats-title">Base Stats</h2>
+        @for (stat of pokemon.stats; track stat.name) {
+          <div class="detail__stat">
+            <span class="detail__stat-name">{{ stat.name }}</span>
+            <div class="detail__stat-bar-container">
+              <div class="detail__stat-bar" [style.width.%]="(stat.value / 255) * 100"></div>
+            </div>
+            <span class="detail__stat-value">{{ stat.value }}</span>
+          </div>
+        }
+      </div>
+    </div>
   }
 </div>
