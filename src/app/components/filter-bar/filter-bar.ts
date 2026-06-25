@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../models/pokemon.model';
 import { setActiveFilter } from '../../store/pokemon.actions';
+import { selectActiveFilter } from '../../store/pokemon.selectors';
 
 @Component({
   selector: 'app-filter-bar',
@@ -10,7 +11,7 @@ import { setActiveFilter } from '../../store/pokemon.actions';
   templateUrl: './filter-bar.html',
   styleUrl: './filter-bar.scss',
 })
-export class FilterBarComponent {
+export class FilterBarComponent implements OnInit {
   activeFilter: string | null = null;
 
   types: string[] = [
@@ -35,6 +36,12 @@ export class FilterBarComponent {
   ];
 
   constructor(private store: Store<AppState>) {}
+
+  ngOnInit(): void {
+    this.store.select(selectActiveFilter).subscribe((filter) => {
+      this.activeFilter = filter;
+    });
+  }
 
   setFilter(type: string | null): void {
     this.activeFilter = type;
