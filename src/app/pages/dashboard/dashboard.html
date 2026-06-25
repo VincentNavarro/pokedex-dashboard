@@ -1,0 +1,23 @@
+<div class="dashboard">
+  <h1 class="dashboard__title">Pokédex</h1>
+
+  @if (loading$ | async) {
+    <div class="dashboard__loading">Loading Pokémon...</div>
+  }
+
+  @if (error$ | async; as error) {
+    <div class="dashboard__error">
+      {{ error }}
+    </div>
+  }
+
+  @if (!(loading$ | async)) {
+    <div class="dashboard__grid">
+      @for (pokemon of (pokemon$ | async) ?? []; track pokemon.id) {
+        <div class="dashboard__card">
+          {{ pokemon.name }}
+        </div>
+      }
+    </div>
+  }
+</div>

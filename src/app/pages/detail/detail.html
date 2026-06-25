@@ -1,0 +1,8 @@
+<div class="detail">
+  @if (pokemon$ | async; as pokemon) {
+    <h1 class="detail__name">{{ pokemon.name }}</h1>
+    <img [src]="pokemon.sprite" [alt]="pokemon.name" />
+    <p>Height: {{ pokemon.height }}</p>
+    <p>Weight: {{ pokemon.weight }}</p>
+  }
+</div>
